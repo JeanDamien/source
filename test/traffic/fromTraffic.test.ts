@@ -86,6 +86,38 @@ describe('fromTraffic', () => {
       path: 'https://api.stripe.com',
     })
   })
+
+  // Happen when the resource is blocked by the browser
+  it.todo(
+    'does not throw an exception given an HAR file with a 0 status entry',
+    () => {
+      const traffic = readArchive(
+        'test/traffic/fixtures/archives/entry-with-status-0.har',
+      )
+      expect(() => fromTraffic(traffic)).not.toThrow()
+    },
+  )
+
+  // Happen when the resource is already in cache
+  it.todo(
+    'does not throw an exception given an HAR file with a 304 status entry',
+    () => {
+      const traffic = readArchive(
+        'test/traffic/fixtures/archives/entry-with-status-304.har',
+      )
+      expect(() => fromTraffic(traffic)).not.toThrow()
+    },
+  )
+
+  it.todo(
+    'does not throw an exception given an HAR file with a websocket entry',
+    () => {
+      const traffic = readArchive(
+        'test/traffic/fixtures/archives/entry-with-ws.har',
+      )
+      expect(() => fromTraffic(traffic)).not.toThrow()
+    },
+  )
 })
 
 describe('toResponseBody', () => {
